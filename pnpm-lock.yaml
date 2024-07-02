@@ -37,6 +37,9 @@ devDependencies:
   internal-ip:
     specifier: ^7.0.0
     version: 7.0.0
+  simple-git-hooks:
+    specifier: ^2.11.1
+    version: 2.11.1
   typescript:
     specifier: ^5.2.2
     version: 5.5.2
@@ -2857,6 +2860,12 @@ packages:
 
   /signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+    dev: true
+
+  /simple-git-hooks@2.11.1:
+    resolution: {integrity: sha512-tgqwPUMDcNDhuf1Xf6KTUsyeqGdgKMhzaH4PAZZuzguOgTl5uuyeYe/8mWgAr6IBxB5V06uqEf6Dy37gIWDtDg==}
+    hasBin: true
+    requiresBuild: true
     dev: true
 
   /sisteransi@1.0.5:
