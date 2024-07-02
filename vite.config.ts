@@ -1,9 +1,9 @@
+import path from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { internalIpV4 } from 'internal-ip'
 
 // @ts-expect-error process is a nodejs global
-// eslint-disable-next-line node/prefer-global/process
 const mobile = !!/android|ios/.exec(process.env.TAURI_ENV_PLATFORM)
 
 // https://vitejs.dev/config/
@@ -29,6 +29,12 @@ export default defineConfig(async () => ({
     watch: {
       // 3. tell vite to ignore watching `src-tauri`
       ignored: ['**/src-tauri/**'],
+    },
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(path.dirname(new URL(import.meta.url).pathname), 'src'),
+      'components': path.resolve(path.dirname(new URL(import.meta.url).pathname), 'src/components'),
     },
   },
 }))

@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
     "composite": true,
+    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"]
+    },
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
