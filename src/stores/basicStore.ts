@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import pkg from '../../package.json'
+import { usePlayerStore } from './playerStore'
 import initLocalStorage from '@/utils/initLocalStorage'
 import updateApp from '@/utils/updateApp'
 
@@ -49,10 +50,15 @@ export const useBasicStore = defineStore('basicStore', () => {
     },
   })
   const dailyTracks = ref([])
+  const player = usePlayerStore()
   const lastfm = ref(JSON.parse(localStorage.getItem('lastfm') || '{}'))
-  const player = ref(JSON.parse(localStorage.getItem('player') || '{}'))
-  const settings = ref(JSON.parse(localStorage.getItem('settings') || '{}'))
-  const data = ref(JSON.parse(localStorage.getItem('data') || '{}'))
+  function updateLikedXXX(name: keyof typeof liked.value, data: any) {
+    liked.value[name] = data
+    if (name === 'songs') {
+      // FIXME:
+      player.player.value.sendSelfToIpcMain()
+    }
+  }
 
   return {
     showLyrics,
@@ -64,8 +70,6 @@ export const useBasicStore = defineStore('basicStore', () => {
     modals,
     dailyTracks,
     lastfm,
-    player,
-    settings,
-    data,
+    updateLikedXXX,
   }
 })
