@@ -1,12 +1,12 @@
-import store from '@/store';
-import request from '@/utils/request';
-import { mapTrackPlayableStatus } from '@/utils/common';
+import request from '@/utils/request'
+import { mapTrackPlayableStatus } from '@/utils/common'
 import {
-  cacheTrackDetail,
-  getTrackDetailFromCache,
   cacheLyric,
+  cacheTrackDetail,
   getLyricFromCache,
-} from '@/utils/db';
+  getTrackDetailFromCache,
+} from '@/utils/db'
+import { useSettingsStore } from '@/stores/settingsStore'
 
 /**
  * 获取音乐 url
@@ -17,9 +17,10 @@ import {
 export function getMP3(id) {
   const getBr = () => {
     // 当返回的 quality >= 400000时，就会优先返回 hi-res
-    const quality = store.state.settings?.musicQuality ?? '320000';
-    return quality === 'flac' ? '350000' : quality;
-  };
+    const settingsStore = useSettingsStore()
+    const quality = settingsStore.settings?.value.musicQuality ?? '320000'
+    return quality === 'flac' ? '350000' : quality
+  }
 
   return request({
     url: '/song/url',
@@ -28,7 +29,7 @@ export function getMP3(id) {
       id,
       br: getBr(),
     },
-  });
+  })
 }
 
 /**
@@ -44,28 +45,28 @@ export function getTrackDetail(ids) {
       params: {
         ids,
       },
-    }).then(data => {
-      data.songs.map(song => {
-        const privileges = data.privileges.find(t => t.id === song.id);
-        cacheTrackDetail(song, privileges);
-      });
-      data.songs = mapTrackPlayableStatus(data.songs, data.privileges);
-      return data;
-    });
-  };
-  fetchLatest();
+    }).then((data) => {
+      data.songs.map((song) => {
+        const privileges = data.privileges.find(t => t.id === song.id)
+        cacheTrackDetail(song, privileges)
+      })
+      data.songs = mapTrackPlayableStatus(data.songs, data.privileges)
+      return data
+    })
+  }
+  fetchLatest()
 
-  let idsInArray = [String(ids)];
+  let idsInArray = [String(ids)]
   if (typeof ids === 'string') {
-    idsInArray = ids.split(',');
+    idsInArray = ids.split(',')
   }
 
-  return getTrackDetailFromCache(idsInArray).then(result => {
+  return getTrackDetailFromCache(idsInArray).then((result) => {
     if (result) {
-      result.songs = mapTrackPlayableStatus(result.songs, result.privileges);
+      result.songs = mapTrackPlayableStatus(result.songs, result.privileges)
     }
-    return result ?? fetchLatest();
-  });
+    return result ?? fetchLatest()
+  })
 }
 
 /**
@@ -81,17 +82,17 @@ export function getLyric(id) {
       params: {
         id,
       },
-    }).then(result => {
-      cacheLyric(id, result);
-      return result;
-    });
-  };
+    }).then((result) => {
+      cacheLyric(id, result)
+      return result
+    })
+  }
 
-  fetchLatest();
+  fetchLatest()
 
-  return getLyricFromCache(id).then(result => {
-    return result ?? fetchLatest();
-  });
+  return getLyricFromCache(id).then((result) => {
+    return result ?? fetchLatest()
+  })
 }
 
 /**
@@ -106,7 +107,7 @@ export function topSong(type) {
     params: {
       type,
     },
-  });
+  })
 }
 
 /**
@@ -114,17 +115,17 @@ export function topSong(type) {
  * 说明 : 调用此接口 , 传入音乐 id, 可喜欢该音乐
  * - id - 歌曲 id
  * - like - 默认为 true 即喜欢 , 若传 false, 则取消喜欢
- * @param {Object} params
+ * @param {object} params
  * @param {number} params.id
  * @param {boolean=} [params.like]
  */
 export function likeATrack(params) {
-  params.timestamp = new Date().getTime();
+  params.timestamp = new Date().getTime()
   return request({
     url: '/like',
     method: 'get',
     params,
-  });
+  })
 }
 
 /**
@@ -133,16 +134,16 @@ export function likeATrack(params) {
  * - id - 歌曲 id
  * - sourceid - 歌单或专辑 id
  * - time - 歌曲播放时间,单位为秒
- * @param {Object} params
+ * @param {object} params
  * @param {number} params.id
  * @param {number} params.sourceid
  * @param {number=} params.time
  */
 export function scrobble(params) {
-  params.timestamp = new Date().getTime();
+  params.timestamp = new Date().getTime()
   return request({
     url: '/scrobble',
     method: 'get',
     params,
-  });
+  })
 }

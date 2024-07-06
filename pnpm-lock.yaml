@@ -17,6 +17,9 @@ dependencies:
   axios:
     specifier: ^1.7.2
     version: 1.7.2
+  crypto-js:
+    specifier: ^4.2.0
+    version: 4.2.0
   dayjs:
     specifier: ^1.11.11
     version: 1.11.11
@@ -46,6 +49,9 @@ devDependencies:
   '@tauri-apps/cli':
     specifier: '>=2.0.0-beta.0'
     version: 2.0.0-beta.20
+  '@types/crypto-js':
+    specifier: ^4.2.2
+    version: 4.2.2
   '@types/js-cookie':
     specifier: ^3.0.6
     version: 3.0.6
@@ -1265,6 +1271,10 @@ packages:
       '@tauri-apps/api': 2.0.0-beta.13
     dev: false
 
+  /@types/crypto-js@4.2.2:
+    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
+    dev: true
+
   /@types/eslint@8.56.10:
     resolution: {integrity: sha512-Shavhk87gCtY2fhXDctcfS3e6FdxWkCx1iUZ9eEUbh7rTqlZT0/IzOkCOVt0fCjcFuZ9FPYfuezTBImfHCDBGQ==}
     dependencies:
@@ -2049,6 +2059,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    dev: false
 
   /css-tree@2.3.1:
     resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
