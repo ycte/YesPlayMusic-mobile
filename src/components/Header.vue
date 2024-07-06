@@ -2,17 +2,20 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMobileCheck } from '@/composables/resize'
+import i18n from '@/locale'
 
 const { isMobile } = useMobileCheck()
 const route = useRoute()
 const headerTitle = computed(() => {
-  return String(route.name) || 'YesPlayMusic'
+  return typeof route.name !== 'symbol' && typeof route.name !== 'undefined'
+    ? i18n.global.t(route.name)
+    : 'YesPlayMusic'
 })
 </script>
 
 <template>
   <div class="blur-header" :class="{ 'pc-header': !isMobile, 'mobile-header': isMobile }">
-    {{ $t(headerTitle) }}
+    {{ headerTitle }}
   </div>
 </template>
 

@@ -10,6 +10,7 @@ import 'virtual:uno.css'
 const app = createApp(App)
 const pinia = createPinia()
 app.use(pinia)
+app.use(router)
 
 // FIXME: init localStorage in @/stores
 const store = useBasicStore()
@@ -19,5 +20,4 @@ const settings = useSettingsStore()
 const lang = computed(() => settings.settings.lang)
 i18n.global.locale = lang.value // change i18n locale after pinia is active
 app.use(i18n)
-app.use(router)
 app.mount('#app')
