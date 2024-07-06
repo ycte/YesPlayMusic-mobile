@@ -4,19 +4,7 @@ import { router } from '@/router'
 import { doLogout, getCookie } from '@/utils/auth'
 
 let baseURL = ''
-// Web 和 Electron 跑在不同端口避免同时启动时冲突
-// if (process.env.IS_ELECTRON) {
-//   if (process.env.NODE_ENV === 'production') {
-//     baseURL = process.env.VUE_APP_ELECTRON_API_URL
-//   }
-//   else {
-//     baseURL = process.env.VUE_APP_ELECTRON_API_URL_DEV
-//   }
-// }
-// else {
-//   baseURL = process.env.VUE_APP_NETEASE_API_URL
-// }
-baseURL = '/api'
+baseURL = import.meta.env.VITE_APP_NETEASE_API_URL
 
 const service = axios.create({
   baseURL,
@@ -40,16 +28,16 @@ service.interceptors.request.use((config) => {
     console.error('You must set up the baseURL in the service\'s config')
   }
 
-  if (!process.env.IS_ELECTRON && config.url && !config.url.includes('/login')) {
+  if (config.url && !config.url.includes('/login')) {
     config.params.realIP = '211.161.244.70'
   }
 
-  if (process.env.VUE_APP_REAL_IP) {
-    config.params.realIP = process.env.VUE_APP_REAL_IP
+  if (import.meta.env.VITE_APP_REAL_IP) {
+    config.params.realIP = import.meta.env.VITE_APP_REAL_IP
   }
 
   // FIXME:
-  const proxy = JSON.parse(localStorage.getItem('settings')).proxyConfig
+  const proxy = JSON.parse(localStorage.getItem('settings') || '{}').proxyConfig
   if (['HTTP', 'HTTPS'].includes(proxy.protocol)) {
     config.params.proxy = `${proxy.protocol}://${proxy.server}:${proxy.port}`
   }
@@ -88,12 +76,7 @@ service.interceptors.response.use(
       doLogout()
 
       // 導向登入頁面
-      if (process.env.IS_ELECTRON === true) {
-        router.push({ name: 'loginAccount' })
-      }
-      else {
-        router.push({ name: 'login' })
-      }
+      router.push({ name: 'login' })
     }
   },
 )

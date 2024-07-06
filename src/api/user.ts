@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import request from '@/utils/request'
 
 /**
  * 获取用户详情
@@ -6,7 +6,7 @@ import request from '@/utils/request';
  * - uid : 用户 id
  * @param {number} uid
  */
-export function userDetail(uid) {
+export function userDetail(uid: number) {
   return request({
     url: '/user/detail',
     method: 'get',
@@ -14,7 +14,7 @@ export function userDetail(uid) {
       uid,
       timestamp: new Date().getTime(),
     },
-  });
+  })
 }
 
 /**
@@ -28,7 +28,7 @@ export function userAccount() {
     params: {
       timestamp: new Date().getTime(),
     },
-  });
+  })
 }
 
 /**
@@ -37,17 +37,17 @@ export function userAccount() {
  * - uid : 用户 id
  * - limit : 返回数量 , 默认为 30
  * - offset : 偏移数量，用于分页 , 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
- * @param {Object} params
+ * @param {object} params
  * @param {number} params.uid
  * @param {number} params.limit
  * @param {number=} params.offset
  */
-export function userPlaylist(params) {
+export function userPlaylist(params: object) {
   return request({
     url: '/user/playlist',
     method: 'get',
     params,
-  });
+  })
 }
 
 /**
@@ -55,16 +55,16 @@ export function userPlaylist(params) {
  * 说明 : 登录后调用此接口 , 传入用户 id, 可获取用户播放记录
  * - uid : 用户 id
  * - type : type=1 时只返回 weekData, type=0 时返回 allData
- * @param {Object} params
+ * @param {object} params
  * @param {number} params.uid
  * @param {number} params.type
  */
-export function userPlayHistory(params) {
+export function userPlayHistory(params: object) {
   return request({
     url: '/user/record',
     method: 'get',
     params,
-  });
+  })
 }
 
 /**
@@ -73,7 +73,7 @@ export function userPlayHistory(params) {
  * - uid: 用户 id
  * @param {number} uid
  */
-export function userLikedSongsIDs(uid) {
+export function userLikedSongsIDs(uid: number) {
   return request({
     url: '/likelist',
     method: 'get',
@@ -81,7 +81,7 @@ export function userLikedSongsIDs(uid) {
       uid,
       timestamp: new Date().getTime(),
     },
-  });
+  })
 }
 
 /**
@@ -98,7 +98,7 @@ export function dailySignin(type = 0) {
       type,
       timestamp: new Date().getTime(),
     },
-  });
+  })
 }
 
 /**
@@ -106,11 +106,11 @@ export function dailySignin(type = 0) {
  * 说明 : 调用此接口可获取到用户收藏的专辑
  * - limit : 返回数量 , 默认为 25
  * - offset : 偏移数量，用于分页 , 如 :( 页数 -1)*25, 其中 25 为 limit 的值 , 默认为 0
- * @param {Object} params
+ * @param {object} params
  * @param {number} params.limit
  * @param {number=} params.offset
  */
-export function likedAlbums(params) {
+export function likedAlbums(params: { limit: number, offset?: number }) {
   return request({
     url: '/album/sublist',
     method: 'get',
@@ -118,14 +118,14 @@ export function likedAlbums(params) {
       limit: params.limit,
       timestamp: new Date().getTime(),
     },
-  });
+  })
 }
 
 /**
  * 获取收藏的歌手（需要登录）
  * 说明 : 调用此接口可获取到用户收藏的歌手
  */
-export function likedArtists(params) {
+export function likedArtists(params: { limit: any }) {
   return request({
     url: '/artist/sublist',
     method: 'get',
@@ -133,14 +133,14 @@ export function likedArtists(params) {
       limit: params.limit,
       timestamp: new Date().getTime(),
     },
-  });
+  })
 }
 
 /**
  * 获取收藏的MV（需要登录）
  * 说明 : 调用此接口可获取到用户收藏的MV
  */
-export function likedMVs(params) {
+export function likedMVs(params: { limit: any }) {
   return request({
     url: '/mv/sublist',
     method: 'get',
@@ -148,15 +148,15 @@ export function likedMVs(params) {
       limit: params.limit,
       timestamp: new Date().getTime(),
     },
-  });
+  })
 }
 
 /**
  * 上传歌曲到云盘（需要登录）
  */
-export function uploadSong(file) {
-  let formData = new FormData();
-  formData.append('songFile', file);
+export function uploadSong(file: string | Blob) {
+  const formData = new FormData()
+  formData.append('songFile', file)
   return request({
     url: '/cloud',
     method: 'post',
@@ -168,9 +168,11 @@ export function uploadSong(file) {
       'Content-Type': 'multipart/form-data',
     },
     timeout: 200000,
-  }).catch(error => {
-    alert(`上传失败，Error: ${error}`);
-  });
+  }).catch((error) => {
+    // FIXME: Show a better error message
+    // eslint-disable-next-line no-alert
+    alert(`上传失败，Error: ${error}`)
+  })
 }
 
 /**
@@ -178,23 +180,23 @@ export function uploadSong(file) {
  * 说明 : 登录后调用此接口 , 可获取云盘数据 , 获取的数据没有对应 url, 需要再调用一 次 /song/url 获取 url
  * - limit : 返回数量 , 默认为 200
  * - offset : 偏移数量，用于分页 , 如 :( 页数 -1)*200, 其中 200 为 limit 的值 , 默认为 0
- * @param {Object} params
+ * @param { timestamp: number, limit: number, offset?: number} params
  * @param {number} params.limit
  * @param {number=} params.offset
  */
-export function cloudDisk(params = {}) {
-  params.timestamp = new Date().getTime();
+export function cloudDisk(params: { timestamp: number, limit: number, offset?: number }) {
+  params.timestamp = new Date().getTime()
   return request({
     url: '/user/cloud',
     method: 'get',
     params,
-  });
+  })
 }
 
 /**
  * 获取云盘歌曲详情（需要登录）
  */
-export function cloudDiskTrackDetail(id) {
+export function cloudDiskTrackDetail(id: any) {
   return request({
     url: '/user/cloud/detail',
     method: 'get',
@@ -202,14 +204,14 @@ export function cloudDiskTrackDetail(id) {
       timestamp: new Date().getTime(),
       id,
     },
-  });
+  })
 }
 
 /**
  * 删除云盘歌曲（需要登录）
  * @param {Array} id
  */
-export function cloudDiskTrackDelete(id) {
+export function cloudDiskTrackDelete(id: any) {
   return request({
     url: '/user/cloud/del',
     method: 'get',
@@ -217,5 +219,5 @@ export function cloudDiskTrackDelete(id) {
       timestamp: new Date().getTime(),
       id,
     },
-  });
+  })
 }

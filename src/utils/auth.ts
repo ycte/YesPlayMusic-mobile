@@ -26,9 +26,9 @@ export function isLoggedIn() {
   return getCookie('MUSIC_U') !== undefined
 }
 
-const dataStore = useDataStore()
 // 账号登录
 export function isAccountLoggedIn() {
+  const dataStore = useDataStore()
   return (
     getCookie('MUSIC_U') !== undefined
     && dataStore.data.value.loginMode === 'account'
@@ -37,6 +37,7 @@ export function isAccountLoggedIn() {
 
 // 用户名搜索（用户数据为只读）
 export function isUsernameLoggedIn() {
+  const dataStore = useDataStore()
   return dataStore.data.value.loginMode === 'username'
 }
 
