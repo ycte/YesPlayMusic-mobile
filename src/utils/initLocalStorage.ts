@@ -10,7 +10,7 @@ const enabledPlaylistCategories = playlistCategories
 const localStorage = {
   player: {},
   settings: {
-    lang: null,
+    lang: 'zh-CN',
     musicLanguage: 'all',
     appearance: 'auto',
     musicQuality: 320000,

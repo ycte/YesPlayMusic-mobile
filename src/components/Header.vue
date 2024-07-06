@@ -1,12 +1,18 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useMobileCheck } from '@/composables/resize'
 
 const { isMobile } = useMobileCheck()
+const route = useRoute()
+const headerTitle = computed(() => {
+  return String(route.name) || 'YesPlayMusic'
+})
 </script>
 
 <template>
   <div class="blur-header" :class="{ 'pc-header': !isMobile, 'mobile-header': isMobile }">
-    Header
+    {{ $t(headerTitle) }}
   </div>
 </template>
 
