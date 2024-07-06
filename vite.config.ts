@@ -1,4 +1,5 @@
 import path from 'node:path'
+import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { internalIpV4 } from 'internal-ip'
@@ -8,7 +9,7 @@ const mobile = !!/android|ios/.exec(process.env.TAURI_ENV_PLATFORM)
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-  plugins: [vue()],
+  plugins: [vue(), UnoCSS()],
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //
