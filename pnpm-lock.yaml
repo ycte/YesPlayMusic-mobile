@@ -20,6 +20,9 @@ dependencies:
   dayjs:
     specifier: ^1.11.11
     version: 1.11.11
+  dexie:
+    specifier: ^4.0.7
+    version: 4.0.7
   js-cookie:
     specifier: ^3.0.5
     version: 3.0.5
@@ -2118,6 +2121,10 @@ packages:
   /destr@2.0.3:
     resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
     dev: true
+
+  /dexie@4.0.7:
+    resolution: {integrity: sha512-M+Lo6rk4pekIfrc2T0o2tvVJwL6EAAM/B78DNfb8aaxFVoI1f8/rz5KTxuAnApkwqTSuxx7T5t0RKH7qprapGg==}
+    dev: false
 
   /dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
