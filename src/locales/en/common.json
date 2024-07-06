@@ -1,0 +1,25 @@
+{
+  "country": {
+    "argentina": "Argentina",
+    "australia": "Australia",
+    "canada": "Canada",
+    "england": "U.K.",
+    "indonesia": "Indonesia",
+    "japan": "Japan",
+    "peru": "Peru",
+    "russia": "Russia",
+    "singapore": "Singapore",
+    "spain": "Spain",
+    "usa": "USA"
+  },
+  "general": {
+    "chgLang": "Change Language",
+    "lang": "EN",
+    "toTop": "To Top"
+  },
+  "header": {
+    "home": "Home",
+    "login": "Login",
+    "logout": "Logout"
+  }
+}
