@@ -107,6 +107,28 @@ import Greet from './components/Greet.vue'
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --color-body-bg: #ffffff;
+  --color-text: #000;
+  --color-primary: #335eea;
+  --color-primary-bg: #eaeffd;
+  --color-secondary: #7a7a7b;
+  --color-secondary-bg: #f5f5f7;
+  --color-navbar-bg: rgba(255, 255, 255, 0.86);
+  --color-primary-bg-for-transparent: rgba(189, 207, 255, 0.28);
+  --color-secondary-bg-for-transparent: rgba(209, 209, 214, 0.28);
+  --html-overflow-y: overlay;
+}
+
+[data-theme='dark'] {
+  --color-body-bg: #222222;
+  --color-text: #ffffff;
+  --color-primary: #335eea;
+  --color-primary-bg: #bbcdff;
+  --color-secondary: #7a7a7b;
+  --color-secondary-bg: #323232;
+  --color-navbar-bg: rgba(34, 34, 34, 0.86);
+  --color-primary-bg-for-transparent: rgba(255, 255, 255, 0.12);
+  --color-secondary-bg-for-transparent: rgba(255, 255, 255, 0.08);
 }
 
 .container {
