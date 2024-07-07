@@ -21,7 +21,7 @@ const rowStyles = computed(() => {
   }
 })
 
-function getSubText(item) {
+function getSubText(item: { copywriter: any, description: any, updateFrequency: any, creator: { nickname: any }, publishTime: string | number | Date, artist: { id: any, name: any } | undefined, artists: { name: any }[] | undefined, type: string, size: number }) {
   if (props.subText === 'copywriter')
     return item.copywriter
   if (props.subText === 'description')

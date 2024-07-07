@@ -6,7 +6,6 @@ import { router } from './router'
 import { useBasicStore } from './stores/basicStore'
 import { useSettingsStore } from '@/stores/settingsStore.ts'
 import 'virtual:uno.css'
-import '@/assets/icons'
 import 'virtual:svg-icons-register'
 
 const app = createApp(App)
