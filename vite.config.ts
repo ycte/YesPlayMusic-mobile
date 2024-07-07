@@ -31,6 +31,13 @@ export default defineConfig(async () => ({
       // 3. tell vite to ignore watching `src-tauri`
       ignored: ['**/src-tauri/**'],
     },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path: string) => path.replace(/^\/api/, ''),
+      },
+    },
   },
   resolve: {
     alias: {

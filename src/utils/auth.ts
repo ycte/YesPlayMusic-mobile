@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import { computed } from 'vue'
 import { logout } from '@/api/auth'
 import { useDataStore } from '@/stores/dataStore'
 
@@ -29,9 +30,10 @@ export function isLoggedIn() {
 // 账号登录
 export function isAccountLoggedIn() {
   const dataStore = useDataStore()
+  const data = computed(() => dataStore.data)
   return (
     getCookie('MUSIC_U') !== undefined
-    && dataStore.data.value.loginMode === 'account'
+    && data.value.loginMode === 'account'
   )
 }
 

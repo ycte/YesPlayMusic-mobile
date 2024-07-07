@@ -28,9 +28,9 @@ service.interceptors.request.use((config) => {
     console.error('You must set up the baseURL in the service\'s config')
   }
 
-  if (config.url && !config.url.includes('/login')) {
-    config.params.realIP = '211.161.244.70'
-  }
+  // if (config.url && !config.url.includes('/login')) {
+  //   config.params.realIP = 'https://netease-cloud-music-api-gamma-five-22.vercel.app'
+  // }
 
   if (import.meta.env.VITE_APP_REAL_IP) {
     config.params.realIP = import.meta.env.VITE_APP_REAL_IP

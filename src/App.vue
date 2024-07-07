@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import { RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 import Greet from './components/Greet.vue'
 </script>
@@ -8,6 +9,7 @@ import Greet from './components/Greet.vue'
 <template>
   <div class="container">
     <Header />
+    <RouterView />
     <h1>Welcome to Tauri!</h1>
 
     <div class="row">
