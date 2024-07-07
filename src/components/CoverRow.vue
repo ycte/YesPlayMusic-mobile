@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, defineProps } from 'vue'
+import SvgIcon from './SvgIcon.vue'
 import Cover from '@/components/Cover.vue'
 import ExplicitSymbol from '@/components/ExplicitSymbol.vue'
 
@@ -85,7 +86,7 @@ function getImageUrl(item) {
       />
       <div class="text">
         <div v-if="showPlayCount" class="info">
-          <span class="play-count"><svg-icon icon-class="play" />{{
+          <span class="play-count"><SvgIcon icon-class="play" />{{
             item.playCount
           }}
           </span>
@@ -95,7 +96,7 @@ function getImageUrl(item) {
             <ExplicitSymbol />
           </span>
           <span v-if="isPrivacy(item)" class="lock-icon">
-            <svg-icon icon-class="lock" /></span>
+            <SvgIcon icon-class="lock" /></span>
           <router-link :to="getTitleLink(item)">
             {{ item.name }}
           </router-link>

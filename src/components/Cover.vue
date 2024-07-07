@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import type { StyleValue } from 'vue'
 import { computed, ref } from 'vue'
+import SvgIcon from './SvgIcon.vue'
 
 const props = defineProps({
   id: { type: Number, required: true },
@@ -16,7 +18,7 @@ const props = defineProps({
 })
 const focus = ref(false)
 const imageStyles = computed(() => {
-  const styles = {}
+  const styles: StyleValue = {}
   if (props.fixedSize !== 0) {
     styles.width = `${props.fixedSize}px`
     styles.height = `${props.fixedSize}px`
@@ -26,14 +28,14 @@ const imageStyles = computed(() => {
   return styles
 })
 const playButtonStyles = computed(() => {
-  const styles = {}
+  const styles: StyleValue = {}
   styles.width = `${props.playButtonSize}%`
   styles.height = `${props.playButtonSize}%`
   return styles
 })
 
 const shadowStyles = computed(() => {
-  const styles = {}
+  const styles: StyleValue = {}
   styles.backgroundImage = `url(${props.imageUrl})`
   if (props.type === 'artist')
     styles.borderRadius = '50%'
@@ -62,7 +64,7 @@ const shadowStyles = computed(() => {
     <div class="cover-container">
       <div class="shade">
         <button v-show="focus" class="play-button" :style="playButtonStyles" @click.stop="play()">
-          <svg-icon icon-class="play" />
+          <SvgIcon icon-class="play" />
         </button>
       </div>
       <img :src="imageUrl" :style="imageStyles" loading="lazy">
